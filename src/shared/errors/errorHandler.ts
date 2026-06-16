@@ -4,7 +4,7 @@ import { createErrorResponse } from "../utils/response";
 
 export const globalErrorHandler = new Elysia()
   .onError(({ code, error, set }) => {
-    logger.error(`[Error] ${code}: ${error.message}`);
+    logger.error(`[Error] ${code}: ${(error as any).message || error}`);
     
     if (code === "NOT_FOUND") {
       set.status = 404;

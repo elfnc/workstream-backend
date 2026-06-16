@@ -303,18 +303,18 @@ GET  /api/v1/auth/me
 
 Tasks:
 
-* [ ] Create auth module
-* [ ] Create login validation
-* [ ] Create login service
-* [ ] Compare password with bcrypt
-* [ ] Generate JWT
-* [ ] Set JWT in HttpOnly Cookie
-* [ ] Create logout route
-* [ ] Clear cookie on logout
-* [ ] Create me route
-* [ ] Return authenticated user
-* [ ] Handle inactive user
-* [ ] Handle invalid credential
+* [x] Create auth module
+* [x] Create login validation
+* [x] Create login service
+* [x] Compare password with bcrypt
+* [x] Generate JWT
+* [x] Set JWT in HttpOnly Cookie
+* [x] Create logout route
+* [x] Clear cookie on logout
+* [x] Create me route
+* [x] Return authenticated user
+* [x] Handle inactive user
+* [x] Handle invalid credential
 
 Login payload:
 
@@ -346,23 +346,23 @@ Login response:
 
 # 10. Auth Middleware
 
-* [ ] Create `requireAuth`
-* [ ] Read JWT from cookie
-* [ ] Verify JWT
-* [ ] Attach user to request context
-* [ ] Reject missing token
-* [ ] Reject invalid token
-* [ ] Reject inactive user
+* [x] Create `requireAuth`
+* [x] Read JWT from cookie
+* [x] Verify JWT
+* [x] Attach user to request context
+* [x] Reject missing token
+* [x] Reject invalid token
+* [x] Reject inactive user
 
 ---
 
 # 11. Role Middleware
 
-* [ ] Create `requireRole`
-* [ ] Support role list
-* [ ] Allow SUPER_ADMIN all access
-* [ ] Restrict DESIGNER mutation to assigned tasks only
-* [ ] Restrict VIEWER to read only
+* [x] Create `requireRole`
+* [x] Support role list
+* [x] Allow SUPER_ADMIN all access
+* [x] Restrict DESIGNER mutation to assigned tasks only
+* [x] Restrict VIEWER to read only
 
 Roles:
 
@@ -388,26 +388,26 @@ DELETE /api/v1/users/:id
 
 Tasks:
 
-* [ ] Create users module
-* [ ] Get users with pagination
-* [ ] Search user by username/name
-* [ ] Filter by role
-* [ ] Filter by active status
-* [ ] Create user
-* [ ] Hash password
-* [ ] Update user
-* [ ] Deactivate user
-* [ ] Prevent deleting self
-* [ ] Prevent duplicate username
-* [ ] Create activity log for user creation
-* [ ] Create activity log for role update
+* [x] Create users module
+* [x] Get users with pagination
+* [x] Search user by username/name
+* [x] Filter by role
+* [x] Filter by active status
+* [x] Create user
+* [x] Hash password
+* [x] Update user
+* [x] Deactivate user
+* [x] Prevent deleting self
+* [x] Prevent duplicate username
+* [x] Create activity log for user creation
+* [x] Create activity log for role update
 
 Access:
 
-* [ ] SUPER_ADMIN only for create/update/delete
-* [ ] SUPER_ADMIN can list all users
-* [ ] DESIGNER can only read own profile
-* [ ] VIEWER read only if needed
+* [x] SUPER_ADMIN only for create/update/delete
+* [x] SUPER_ADMIN can list all users
+* [x] DESIGNER can only read own profile
+* [x] VIEWER read only if needed
 
 ---
 

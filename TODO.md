@@ -34,15 +34,15 @@ Version 1.3
 # 1. Backend Project Setup
 
 * [x] Create backend project with Bun
-* [ ] Setup TypeScript
+* [x] Setup TypeScript
 * [x] Setup ElysiaJS
-* [ ] Setup project scripts
-* [ ] Setup folder structure
-* [ ] Setup environment variables
-* [ ] Setup CORS
-* [ ] Setup global error handler
-* [ ] Setup response helper
-* [ ] Setup Winston logger helper
+* [x] Setup project scripts
+* [x] Setup folder structure
+* [x] Setup environment variables
+* [x] Setup CORS
+* [x] Setup global error handler
+* [x] Setup response helper
+* [x] Setup Winston logger helper
 
 ---
 
@@ -74,32 +74,32 @@ bun add -d drizzle-kit
 
 # 3. Folder Structure
 
-* [ ] Create `src/app.ts`
-* [ ] Create `src/server.ts`
-* [ ] Create `src/config/env.ts`
-* [ ] Create `src/config/cors.ts`
-* [ ] Create `src/config/logger.ts`
-* [ ] Create `src/db/index.ts`
-* [ ] Create `src/db/schema`
-* [ ] Create `src/db/seed.ts`
-* [ ] Create `src/plugins`
-* [ ] Create `src/middleware`
-* [ ] Create `src/modules`
-* [ ] Create `src/shared`
-* [ ] Create `src/shared/errors`
-* [ ] Create `src/shared/utils`
-* [ ] Create `src/shared/constants`
-* [ ] Create `src/shared/validations`
-* [ ] Create `src/shared/upload`
-* [ ] Create `src/shared/upload/multer.ts`
-* [ ] Create `drizzle.config.ts`
+* [x] Create `src/app.ts`
+* [x] Create `src/server.ts`
+* [x] Create `src/config/env.ts`
+* [x] Create `src/config/cors.ts`
+* [x] Create `src/config/logger.ts`
+* [x] Create `src/db/index.ts`
+* [x] Create `src/db/schema`
+* [x] Create `src/db/seed.ts`
+* [x] Create `src/plugins`
+* [x] Create `src/middleware`
+* [x] Create `src/modules`
+* [x] Create `src/shared`
+* [x] Create `src/shared/errors`
+* [x] Create `src/shared/utils`
+* [x] Create `src/shared/constants`
+* [x] Create `src/shared/validations`
+* [x] Create `src/shared/upload`
+* [x] Create `src/shared/upload/multer.ts`
+* [x] Create `drizzle.config.ts`
 
 ---
 
 # 4. Environment Variables
 
-* [ ] Add `.env`
-* [ ] Add `.env.example`
+* [x] Add `.env`
+* [x] Add `.env.example`
 
 Required env:
 

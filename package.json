@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@elysiajs/cookie": "^0.8.0",
+    "@elysiajs/cors": "^1.4.2",
+    "@elysiajs/jwt": "^1.4.2",
+    "@elysiajs/static": "^1.4.10",
+    "bcryptjs": "^3.0.3",
+    "drizzle-orm": "^0.45.2",
+    "elysia": "^1.4.28",
+    "multer": "^2.2.0",
+    "nanoid": "^5.1.11",
+    "postgres": "^3.4.9",
+    "winston": "^3.19.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.10"
+  }
+}

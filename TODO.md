@@ -1,0 +1,903 @@
+# TODO.md
+
+# Workstream Backend TODO
+
+Enterprise Workflow Management System
+
+Target:
+
+* Backend first
+* Trial-ready in 2 weeks
+* Multi-user login
+* Username-based authentication
+* Progress update per designer
+* Every individual can update their own assigned tasks
+* Task tracking with real data
+
+Stack:
+
+* Bun
+* ElysiaJS
+* TypeScript
+* Drizzle ORM
+* PostgreSQL
+* JWT
+* HttpOnly Cookie
+* Winston Logger
+* Multer (Upload Helper)
+* Docker optional
+
+Version 1.3
+
+---
+
+# 1. Backend Project Setup
+
+* [x] Create backend project with Bun
+* [ ] Setup TypeScript
+* [x] Setup ElysiaJS
+* [ ] Setup project scripts
+* [ ] Setup folder structure
+* [ ] Setup environment variables
+* [ ] Setup CORS
+* [ ] Setup global error handler
+* [ ] Setup response helper
+* [ ] Setup Winston logger helper
+
+---
+
+# 2. Required Packages
+
+* [x] Install ElysiaJS
+* [x] Install Drizzle ORM
+* [x] Install Drizzle Kit
+* [x] Install PostgreSQL driver
+* [x] Install JWT package
+* [x] Install bcrypt package
+* [x] Install Zod
+* [x] Install Winston
+* [x] Install Multer
+* [x] Install cookie plugin
+* [x] Install CORS plugin
+* [x] Install static file plugin for uploads
+* [x] Install nanoid helper if needed
+
+Suggested:
+
+```bash
+bun add elysia @elysiajs/cors @elysiajs/cookie @elysiajs/jwt @elysiajs/static drizzle-orm postgres bcryptjs zod nanoid winston multer
+
+bun add -d drizzle-kit
+```
+
+---
+
+# 3. Folder Structure
+
+* [ ] Create `src/app.ts`
+* [ ] Create `src/server.ts`
+* [ ] Create `src/config/env.ts`
+* [ ] Create `src/config/cors.ts`
+* [ ] Create `src/config/logger.ts`
+* [ ] Create `src/db/index.ts`
+* [ ] Create `src/db/schema`
+* [ ] Create `src/db/seed.ts`
+* [ ] Create `src/plugins`
+* [ ] Create `src/middleware`
+* [ ] Create `src/modules`
+* [ ] Create `src/shared`
+* [ ] Create `src/shared/errors`
+* [ ] Create `src/shared/utils`
+* [ ] Create `src/shared/constants`
+* [ ] Create `src/shared/validations`
+* [ ] Create `src/shared/upload`
+* [ ] Create `src/shared/upload/multer.ts`
+* [ ] Create `drizzle.config.ts`
+
+---
+
+# 4. Environment Variables
+
+* [ ] Add `.env`
+* [ ] Add `.env.example`
+
+Required env:
+
+```env
+NODE_ENV=development
+PORT=3000
+
+DATABASE_URL=postgresql://postgres:password@localhost:5432/workstream
+
+JWT_SECRET=change_me
+JWT_EXPIRES_IN=7d
+
+FRONTEND_URL=http://localhost:5173
+
+COOKIE_NAME=workstream_token
+COOKIE_SECURE=false
+COOKIE_SAME_SITE=lax
+
+UPLOAD_DIR=uploads
+MAX_FILE_SIZE=5242880
+```
+
+---
+
+# 5. Database Setup
+
+* [ ] Setup PostgreSQL database
+* [ ] Configure Drizzle connection
+* [ ] Create Drizzle schema
+* [ ] Generate migration
+* [ ] Run migration
+* [ ] Create seed script
+* [ ] Run seed script
+
+---
+
+# 6. Drizzle Schema
+
+Create enums:
+
+* [ ] Role
+* [ ] TaskStatus
+* [ ] PriorityLevel
+* [ ] ActivityAction
+* [ ] NotificationType
+
+Create tables:
+
+* [ ] User
+* [ ] Category
+* [ ] Priority
+* [ ] PatternSize
+* [ ] Task
+* [ ] TaskComment
+* [ ] RevisionNote
+* [ ] ProgressLog
+* [ ] ActivityLog
+* [ ] Notification
+* [ ] Attachment
+
+User fields:
+
+```text
+id
+username
+name
+passwordHash
+role
+isActive
+createdAt
+updatedAt
+```
+
+Important:
+
+* [ ] Username must be unique
+* [ ] Do not use email authentication
+* [ ] Email field is not required
+
+---
+
+# 7. Seed Data
+
+Create initial users:
+
+* [ ] Super Admin
+* [ ] Designer 1
+* [ ] Designer 2
+* [ ] Viewer
+
+Example usernames:
+
+```text
+admin
+designer1
+designer2
+viewer
+```
+
+Roles:
+
+```text
+SUPER_ADMIN
+DESIGNER
+VIEWER
+```
+
+Default categories:
+
+* [ ] New Design
+* [ ] Tracing
+* [ ] Resize Pattern
+* [ ] Color Adjustment
+* [ ] Repeat Pattern
+* [ ] Revision
+* [ ] Other
+
+Default priorities:
+
+* [ ] Low
+* [ ] Medium
+* [ ] High
+* [ ] Urgent
+
+Default pattern sizes:
+
+* [ ] 10
+* [ ] 12
+* [ ] 14
+
+Default tasks:
+
+* [ ] Resize Pattern Ukuran 10
+* [ ] Resize Pattern Ukuran 12
+* [ ] Resize Pattern Ukuran 14
+* [ ] Tracing Artwork A-1245
+* [ ] Color Adjustment Motif Floral
+* [ ] Repeat Pattern Check
+* [ ] Revisi Warna Navy
+* [ ] Layout Motif Rotary
+* [ ] Cleanup File Design
+
+---
+
+# 8. API Response Standard
+
+Success:
+
+```json
+{
+  "success": true,
+  "message": "Request successful",
+  "data": {}
+}
+```
+
+Error:
+
+```json
+{
+  "success": false,
+  "message": "Validation failed",
+  "errors": [
+    {
+      "field": "username",
+      "message": "Username is required"
+    }
+  ]
+}
+```
+
+Pagination:
+
+```json
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": {
+    "items": [],
+    "meta": {
+      "page": 1,
+      "limit": 10,
+      "total": 100,
+      "totalPages": 10
+    }
+  }
+}
+```
+
+---
+
+# 9. Auth Module
+
+Routes:
+
+```text
+POST /api/v1/auth/login
+POST /api/v1/auth/logout
+GET  /api/v1/auth/me
+```
+
+Tasks:
+
+* [ ] Create auth module
+* [ ] Create login validation
+* [ ] Create login service
+* [ ] Compare password with bcrypt
+* [ ] Generate JWT
+* [ ] Set JWT in HttpOnly Cookie
+* [ ] Create logout route
+* [ ] Clear cookie on logout
+* [ ] Create me route
+* [ ] Return authenticated user
+* [ ] Handle inactive user
+* [ ] Handle invalid credential
+
+Login payload:
+
+```json
+{
+  "username": "designer1",
+  "password": "password123"
+}
+```
+
+Login response:
+
+```json
+{
+  "success": true,
+  "message": "Login successful",
+  "data": {
+    "user": {
+      "id": "user_id",
+      "username": "designer1",
+      "name": "Designer 1",
+      "role": "DESIGNER"
+    }
+  }
+}
+```
+
+---
+
+# 10. Auth Middleware
+
+* [ ] Create `requireAuth`
+* [ ] Read JWT from cookie
+* [ ] Verify JWT
+* [ ] Attach user to request context
+* [ ] Reject missing token
+* [ ] Reject invalid token
+* [ ] Reject inactive user
+
+---
+
+# 11. Role Middleware
+
+* [ ] Create `requireRole`
+* [ ] Support role list
+* [ ] Allow SUPER_ADMIN all access
+* [ ] Restrict DESIGNER mutation to assigned tasks only
+* [ ] Restrict VIEWER to read only
+
+Roles:
+
+```text
+SUPER_ADMIN
+DESIGNER
+VIEWER
+```
+
+---
+
+# 12. User Module
+
+Routes:
+
+```text
+GET    /api/v1/users
+POST   /api/v1/users
+GET    /api/v1/users/:id
+PATCH  /api/v1/users/:id
+DELETE /api/v1/users/:id
+```
+
+Tasks:
+
+* [ ] Create users module
+* [ ] Get users with pagination
+* [ ] Search user by username/name
+* [ ] Filter by role
+* [ ] Filter by active status
+* [ ] Create user
+* [ ] Hash password
+* [ ] Update user
+* [ ] Deactivate user
+* [ ] Prevent deleting self
+* [ ] Prevent duplicate username
+* [ ] Create activity log for user creation
+* [ ] Create activity log for role update
+
+Access:
+
+* [ ] SUPER_ADMIN only for create/update/delete
+* [ ] SUPER_ADMIN can list all users
+* [ ] DESIGNER can only read own profile
+* [ ] VIEWER read only if needed
+
+---
+
+# 13. Settings Module
+
+Routes:
+
+```text
+GET /api/v1/settings/categories
+GET /api/v1/settings/priorities
+GET /api/v1/settings/pattern-sizes
+```
+
+Trial scope:
+
+* [ ] Get categories
+* [ ] Get priorities
+* [ ] Get pattern sizes
+
+Can postpone:
+
+* [ ] Create category
+* [ ] Update category
+* [ ] Deactivate category
+* [ ] Create priority
+* [ ] Update priority
+* [ ] Deactivate priority
+* [ ] Create pattern size
+* [ ] Update pattern size
+
+---
+
+# 14. Task Module
+
+Routes:
+
+```text
+GET    /api/v1/tasks
+GET    /api/v1/tasks/board
+POST   /api/v1/tasks
+GET    /api/v1/tasks/:id
+PATCH  /api/v1/tasks/:id
+DELETE /api/v1/tasks/:id
+```
+
+Tasks:
+
+* [ ] Create task module
+* [ ] Create task validation
+* [ ] Get task list with pagination
+* [ ] Get board grouped by status
+* [ ] Get task detail
+* [ ] Create task
+* [ ] Update task
+* [ ] Soft delete task
+* [ ] Filter by status
+* [ ] Filter by designer
+* [ ] Filter by category
+* [ ] Filter by priority
+* [ ] Filter by pattern size (10, 12, 14)
+* [ ] Filter by due date
+* [ ] Search by title/reference number
+* [ ] Sort by due date
+* [ ] Sort by updatedAt
+
+Access:
+
+* [ ] SUPER_ADMIN can view all tasks
+* [ ] SUPER_ADMIN can create/update/delete tasks
+* [ ] DESIGNER can view assigned tasks
+* [ ] DESIGNER can update their own assigned tasks
+* [ ] VIEWER read only
+
+---
+
+# 15. Task Status Module
+
+Route:
+
+```text
+PATCH /api/v1/tasks/:id/status
+```
+
+Tasks:
+
+* [ ] Validate status
+* [ ] Update status
+* [ ] If status DONE, set completedAt
+* [ ] If status not DONE, clear completedAt if needed
+* [ ] Create activity log
+* [ ] Create notification if status changed
+* [ ] Return updated task
+
+Valid statuses:
+
+```text
+QUEUE
+WORKING
+CHECKING
+REVISION
+READY_UPLOAD
+DONE
+```
+
+UI labels:
+
+```text
+QUEUE        = Antrian
+WORKING      = Dikerjakan
+CHECKING     = Dicek
+REVISION     = Revisi
+READY_UPLOAD = Siap Upload
+DONE         = Selesai
+```
+
+Important:
+
+* [ ] Status update does not automatically change progress
+* [ ] Progress remains manually controlled
+
+---
+
+# 16. Task Progress Module
+
+Route:
+
+```text
+PATCH /api/v1/tasks/:id/progress
+```
+
+Payload:
+
+```json
+{
+  "progress": 65,
+  "note": "Tracing selesai, tinggal cleanup detail."
+}
+```
+
+Tasks:
+
+* [ ] Validate progress is integer 0-100
+* [ ] Validate progress range based on current status
+* [ ] Update task progress
+* [ ] Update task progressNote
+* [ ] Create progress log
+* [ ] Create activity log
+* [ ] Return updated task
+
+Progress rules:
+
+```text
+QUEUE        = 0
+WORKING      = 15-80
+CHECKING     = 80-90
+REVISION     = 50-85
+READY_UPLOAD = 90-99
+DONE         = 100
+```
+
+Access:
+
+* [ ] SUPER_ADMIN can update any task progress
+* [ ] DESIGNER can update their own assigned task progress
+* [ ] VIEWER cannot update progress
+
+---
+
+# 17. Individual Task Ownership Rules
+
+Rules:
+
+* [ ] Every task must have one assigned designer
+* [ ] Every designer only updates their own tasks
+* [ ] Designers cannot modify tasks owned by others
+* [ ] Designers can update status
+* [ ] Designers can update progress
+* [ ] Designers can add comments
+* [ ] Designers can add revision notes
+* [ ] Ownership validation must happen in backend
+
+Validation flow:
+
+```text
+JWT User
+↓
+
+Get Task
+
+↓
+
+Compare assignedToId === user.id
+
+↓
+
+Allow or Reject
+```
+
+---
+
+# 18. Comment Module
+
+Routes:
+
+```text
+GET  /api/v1/tasks/:id/comments
+POST /api/v1/tasks/:id/comments
+```
+
+Tasks:
+
+* [ ] Create comment module
+* [ ] Get task comments
+* [ ] Add comment
+* [ ] Create activity log
+* [ ] Create notification if needed
+
+Access:
+
+* [ ] SUPER_ADMIN can comment all tasks
+* [ ] DESIGNER can comment assigned tasks
+* [ ] VIEWER can read comments only
+
+---
+
+# 19. Revision Note Module
+
+Routes:
+
+```text
+GET  /api/v1/tasks/:id/revisions
+POST /api/v1/tasks/:id/revisions
+```
+
+Tasks:
+
+* [ ] Create revision module
+* [ ] Get revision notes
+* [ ] Add revision note
+* [ ] Create activity log
+* [ ] Create notification
+
+Access:
+
+* [ ] SUPER_ADMIN can add revision notes
+* [ ] DESIGNER can add revision notes for assigned tasks
+* [ ] VIEWER read only
+
+---
+
+# 20. Activity Module
+
+Route:
+
+```text
+GET /api/v1/activity
+```
+
+Tasks:
+
+* [ ] Create activity module
+* [ ] Get activity logs with pagination
+* [ ] Filter by user
+* [ ] Filter by task
+* [ ] Filter by action
+* [ ] Filter by date range
+* [ ] Format oldValue/newValue consistently
+
+Access:
+
+* [ ] SUPER_ADMIN can view all activity
+* [ ] DESIGNER can view own related activity
+* [ ] VIEWER read only
+
+---
+
+# 21. Workload Module
+
+Routes:
+
+```text
+GET /api/v1/workload
+GET /api/v1/workload/:designerId
+```
+
+Tasks:
+
+* [ ] Create workload module
+* [ ] Get workload grouped by designer
+* [ ] Count active tasks per designer
+* [ ] Count working tasks per designer
+* [ ] Count revision tasks per designer
+* [ ] Count overdue tasks per designer
+* [ ] Calculate average progress per designer
+* [ ] Get designer workload detail
+* [ ] Group designer tasks by status
+* [ ] Sort designer tasks by due date
+
+Access:
+
+* [ ] SUPER_ADMIN can view all workload
+* [ ] DESIGNER can view own workload
+* [ ] VIEWER read only
+
+---
+
+# 22. Dashboard Module
+
+Route:
+
+```text
+GET /api/v1/dashboard/summary
+```
+
+Tasks:
+
+* [ ] Create dashboard module
+* [ ] Return total tasks
+* [ ] Return working count
+* [ ] Return revision count
+* [ ] Return ready upload count
+* [ ] Return overdue count
+* [ ] Return my tasks
+* [ ] Return due today tasks
+* [ ] Return workload summary
+* [ ] Return recent activity
+
+Role behavior:
+
+* [ ] SUPER_ADMIN sees all task summary
+* [ ] DESIGNER sees own task summary
+* [ ] VIEWER sees read-only summary
+
+---
+
+# 23. Notification Module
+
+Routes:
+
+```text
+GET   /api/v1/notifications
+PATCH /api/v1/notifications/:id/read
+PATCH /api/v1/notifications/read-all
+```
+
+Trial priority:
+
+* [ ] Create notification model usage
+* [ ] Create notification on task assigned
+* [ ] Create notification on revision added
+* [ ] Create notification on status changed
+* [ ] Get notifications for logged-in user
+* [ ] Mark notification as read
+* [ ] Mark all as read
+
+Can postpone:
+
+* [ ] Deadline approaching cron
+* [ ] Overdue cron
+
+---
+
+# 24. Attachment Module
+
+Routes:
+
+```text
+POST   /api/v1/tasks/:id/attachments
+DELETE /api/v1/attachments/:id
+```
+
+Trial priority:
+
+* [ ] Setup upload directory
+* [ ] Setup Multer helper
+* [ ] Configure Multer disk storage
+* [ ] Configure unique filename generator
+* [ ] Configure file filter
+* [ ] Validate file type
+* [ ] Validate file size
+* [ ] Upload preview file
+* [ ] Save attachment metadata
+* [ ] Delete attachment soft delete
+* [ ] Serve uploaded files
+
+Allowed:
+
+```text
+jpg
+jpeg
+png
+pdf
+```
+
+Max size:
+
+```text
+5MB
+```
+
+Can postpone:
+
+* [ ] Advanced file preview
+* [ ] Multiple upload optimization
+
+---
+
+# 25. Validation Rules
+
+Global validation:
+
+* [ ] Required fields
+* [ ] String length limit
+* [ ] Valid enum values
+* [ ] Valid date format
+* [ ] Progress range by status
+* [ ] File size limit
+* [ ] File type limit
+
+Task validation:
+
+* [ ] title required
+* [ ] categoryId required
+* [ ] priorityId required
+* [ ] patternSize required (10, 12, 14)
+* [ ] assignedToId required
+* [ ] referenceNumber optional
+* [ ] dueDate optional
+* [ ] description optional
+* [ ] fileReference optional
+
+---
+
+# 26. Security Checklist
+
+* [ ] Password hashed
+* [ ] JWT secret from env
+* [ ] JWT in HttpOnly Cookie
+* [ ] Cookie secure in production
+* [ ] SameSite configured
+* [ ] CORS restricted to frontend origin
+* [ ] No passwordHash in response
+* [ ] RBAC enforced in backend
+* [ ] Ownership validation enforced
+* [ ] Upload file validation
+* [ ] Soft delete instead of hard delete for important records
+
+---
+
+# 27. Trial Deployment
+
+Local trial options:
+
+* [ ] Run on office local network
+* [ ] Backend accessible from LAN IP
+* [ ] Frontend points to backend LAN IP
+* [ ] PostgreSQL running locally or Docker
+
+Production-like option:
+
+* [ ] Nginx reverse proxy
+* [ ] Docker compose
+* [ ] PostgreSQL volume
+* [ ] Uploads volume
+* [ ] Environment configured
+
+---
+
+# 28. Testing Checklist
+
+Auth:
+
+* [ ] Super Admin login
+* [ ] Designer login
+* [ ] Viewer login
+* [ ] Logout
+* [ ] Invalid login rejected
+
+Task:
+
+* [ ] Super Admin create task
+* [ ] Designer sees assigned task
+* [ ] Designer cannot edit other designer task
+* [ ] Designer can update own progress
+* [ ] Designer can update own status
+* [ ] Designer can add comment
+* [ ] Progress validation works
+
+Workload:
+
+* [ ] Workload grouped by designer
+* [ ] Designer detail works
+* [ ]

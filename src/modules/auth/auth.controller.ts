@@ -29,6 +29,7 @@ export const authController = new Elysia({ prefix: "/api/v1/auth" })
       sameSite: env.COOKIE_SAME_SITE,
       path: "/",
     });
+    console.log("Login successful, setting cookie:", workstream_token.value);
 
     const { passwordHash, ...safeUser } = user;
 

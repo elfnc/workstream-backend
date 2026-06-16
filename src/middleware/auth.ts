@@ -6,7 +6,7 @@ import { users } from "../db/schema";
 import { eq } from "drizzle-orm";
 import { createErrorResponse } from "../shared/utils/response";
 
-export const authPlugin = new Elysia()
+export const authPlugin = (app: Elysia) => app
   .use(
     jwt({
       name: "jwt",
@@ -14,7 +14,7 @@ export const authPlugin = new Elysia()
       exp: env.JWT_EXPIRES_IN,
     })
   )
-  .derive(async ({ jwt, cookie: { workstream_token } }) => {
+  .resolve(async ({ jwt, cookie: { workstream_token } }) => {
     if (!workstream_token || !workstream_token.value) {
       return { user: null };
     }
@@ -37,9 +37,8 @@ export const requireAuth = (app: Elysia) =>
   app
     .use(authPlugin)
     .onBeforeHandle((ctx: any) => {
-      const { user, set } = ctx;
-      if (!user) {
-        set.status = 401;
+      if (!ctx.user) {
+        ctx.set.status = 401;
         return createErrorResponse("Unauthorized or inactive user");
       }
     });

@@ -1,5 +1,5 @@
 import { db } from "../../db";
-import { revisionNotes, activityLogs } from "../../db/schema";
+import { revisionNotes, activityLogs, notifications, tasks } from "../../db/schema";
 import { eq, desc } from "drizzle-orm";
 
 export const revisionsService = {
@@ -20,6 +20,16 @@ export const revisionsService = {
         action: "UPDATE",
         newValue: "Added revision note"
       });
+
+      const [task] = await tx.select().from(tasks).where(eq(tasks.id, taskId));
+      if (task?.assignedToId) {
+        await tx.insert(notifications).values({
+          userId: task.assignedToId,
+          type: "REVISION_ADDED",
+          message: "A new revision note has been added to your task",
+          taskId
+        });
+      }
 
       return newRevision;
     });

@@ -695,22 +695,22 @@ GET /api/v1/workload/:designerId
 
 Tasks:
 
-* [ ] Create workload module
-* [ ] Get workload grouped by designer
-* [ ] Count active tasks per designer
-* [ ] Count working tasks per designer
-* [ ] Count revision tasks per designer
-* [ ] Count overdue tasks per designer
-* [ ] Calculate average progress per designer
-* [ ] Get designer workload detail
-* [ ] Group designer tasks by status
-* [ ] Sort designer tasks by due date
+* [x] Create workload module
+* [x] Get workload grouped by designer
+* [x] Count active tasks per designer
+* [x] Count working tasks per designer
+* [x] Count revision tasks per designer
+* [x] Count overdue tasks per designer
+* [x] Calculate average progress per designer
+* [x] Get designer workload detail
+* [x] Group designer tasks by status
+* [x] Sort designer tasks by due date
 
 Access:
 
-* [ ] SUPER_ADMIN can view all workload
-* [ ] DESIGNER can view own workload
-* [ ] VIEWER read only
+* [x] SUPER_ADMIN can view all workload
+* [x] DESIGNER can view own workload
+* [x] VIEWER read only
 
 ---
 
@@ -724,22 +724,22 @@ GET /api/v1/dashboard/summary
 
 Tasks:
 
-* [ ] Create dashboard module
-* [ ] Return total tasks
-* [ ] Return working count
-* [ ] Return revision count
-* [ ] Return ready upload count
-* [ ] Return overdue count
-* [ ] Return my tasks
-* [ ] Return due today tasks
-* [ ] Return workload summary
-* [ ] Return recent activity
+* [x] Create dashboard module
+* [x] Return total tasks
+* [x] Return working count
+* [x] Return revision count
+* [x] Return ready upload count
+* [x] Return overdue count
+* [x] Return my tasks
+* [x] Return due today tasks
+* [x] Return workload summary
+* [x] Return recent activity
 
 Role behavior:
 
-* [ ] SUPER_ADMIN sees all task summary
-* [ ] DESIGNER sees own task summary
-* [ ] VIEWER sees read-only summary
+* [x] SUPER_ADMIN sees all task summary
+* [x] DESIGNER sees own task summary
+* [x] VIEWER sees read-only summary
 
 ---
 
@@ -755,13 +755,13 @@ PATCH /api/v1/notifications/read-all
 
 Trial priority:
 
-* [ ] Create notification model usage
-* [ ] Create notification on task assigned
-* [ ] Create notification on revision added
-* [ ] Create notification on status changed
-* [ ] Get notifications for logged-in user
-* [ ] Mark notification as read
-* [ ] Mark all as read
+* [x] Create notification model usage
+* [x] Create notification on task assigned
+* [x] Create notification on revision added
+* [x] Create notification on status changed
+* [x] Get notifications for logged-in user
+* [x] Mark notification as read
+* [x] Mark all as read
 
 Can postpone:
 
@@ -781,17 +781,17 @@ DELETE /api/v1/attachments/:id
 
 Trial priority:
 
-* [ ] Setup upload directory
-* [ ] Setup Multer helper
-* [ ] Configure Multer disk storage
-* [ ] Configure unique filename generator
-* [ ] Configure file filter
-* [ ] Validate file type
-* [ ] Validate file size
-* [ ] Upload preview file
-* [ ] Save attachment metadata
-* [ ] Delete attachment soft delete
-* [ ] Serve uploaded files
+* [x] Setup upload directory
+* [x] Setup Multer helper (Using Elysia native)
+* [x] Configure Multer disk storage (Using Elysia native)
+* [x] Configure unique filename generator
+* [x] Configure file filter
+* [x] Validate file type
+* [x] Validate file size
+* [x] Upload preview file
+* [x] Save attachment metadata
+* [x] Delete attachment soft delete
+* [x] Serve uploaded files
 
 Allowed:
 

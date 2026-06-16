@@ -1,5 +1,5 @@
 import { db } from "../../db";
-import { tasks, activityLogs, progressLogs } from "../../db/schema";
+import { tasks, activityLogs, progressLogs, notifications } from "../../db/schema";
 import { eq, and, or, ilike, desc, asc, sql } from "drizzle-orm";
 
 export const tasksService = {
@@ -62,6 +62,16 @@ export const tasksService = {
         action: "CREATE",
         newValue: JSON.stringify(newTask)
       });
+      
+      if (insertData.assignedToId) {
+        await tx.insert(notifications).values({
+          userId: insertData.assignedToId,
+          type: "TASK_ASSIGNED",
+          message: `You have been assigned to task: ${insertData.title}`,
+          taskId: newTask.id
+        });
+      }
+
       return newTask;
     });
   },
@@ -123,6 +133,16 @@ export const tasksService = {
         oldValue: oldTask.status,
         newValue: status
       });
+
+      if (oldTask.assignedToId) {
+        await tx.insert(notifications).values({
+          userId: oldTask.assignedToId,
+          type: "STATUS_CHANGED",
+          message: `Task status changed to ${status}`,
+          taskId: id
+        });
+      }
+
       return updatedTask;
     });
   },

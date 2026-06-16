@@ -619,17 +619,17 @@ POST /api/v1/tasks/:id/comments
 
 Tasks:
 
-* [ ] Create comment module
-* [ ] Get task comments
-* [ ] Add comment
-* [ ] Create activity log
-* [ ] Create notification if needed
+* [x] Create comment module
+* [x] Get task comments
+* [x] Add comment
+* [x] Create activity log
+* [x] Create notification if needed
 
 Access:
 
-* [ ] SUPER_ADMIN can comment all tasks
-* [ ] DESIGNER can comment assigned tasks
-* [ ] VIEWER can read comments only
+* [x] SUPER_ADMIN can comment all tasks
+* [x] DESIGNER can comment assigned tasks
+* [x] VIEWER can read comments only
 
 ---
 
@@ -644,17 +644,17 @@ POST /api/v1/tasks/:id/revisions
 
 Tasks:
 
-* [ ] Create revision module
-* [ ] Get revision notes
-* [ ] Add revision note
-* [ ] Create activity log
-* [ ] Create notification
+* [x] Create revision module
+* [x] Get revision notes
+* [x] Add revision note
+* [x] Create activity log
+* [x] Create notification
 
 Access:
 
-* [ ] SUPER_ADMIN can add revision notes
-* [ ] DESIGNER can add revision notes for assigned tasks
-* [ ] VIEWER read only
+* [x] SUPER_ADMIN can add revision notes
+* [x] DESIGNER can add revision notes for assigned tasks
+* [x] VIEWER read only
 
 ---
 
@@ -668,19 +668,19 @@ GET /api/v1/activity
 
 Tasks:
 
-* [ ] Create activity module
-* [ ] Get activity logs with pagination
-* [ ] Filter by user
-* [ ] Filter by task
-* [ ] Filter by action
-* [ ] Filter by date range
-* [ ] Format oldValue/newValue consistently
+* [x] Create activity module
+* [x] Get activity logs with pagination
+* [x] Filter by user
+* [x] Filter by task
+* [x] Filter by action
+* [x] Filter by date range
+* [x] Format oldValue/newValue consistently
 
 Access:
 
-* [ ] SUPER_ADMIN can view all activity
-* [ ] DESIGNER can view own related activity
-* [ ] VIEWER read only
+* [x] SUPER_ADMIN can view all activity
+* [x] DESIGNER can view own related activity
+* [x] VIEWER read only
 
 ---
 

@@ -859,7 +859,7 @@ Task validation:
 
 # 27. Trial Deployment
 
-Local trial options:
+Local trial options: (backlog)
 
 * [ ] Run on office local network
 * [ ] Backend accessible from LAN IP
@@ -868,11 +868,11 @@ Local trial options:
 
 Production-like option:
 
-* [ ] Nginx reverse proxy
-* [ ] Docker compose
-* [ ] PostgreSQL volume
-* [ ] Uploads volume
-* [ ] Environment configured
+* [x] Nginx reverse proxy
+* [x] Docker compose
+* [x] PostgreSQL volume
+* [x] Uploads volume
+* [x] Environment configured
 
 ---
 
@@ -880,11 +880,11 @@ Production-like option:
 
 Auth:
 
-* [ ] Super Admin login
-* [ ] Designer login
-* [ ] Viewer login
-* [ ] Logout
-* [ ] Invalid login rejected
+* [x] Super Admin login
+* [x] Designer login
+* [x] Viewer login
+* [x] Logout
+* [x] Invalid login rejected
 
 Task:
 

@@ -66,7 +66,7 @@ export const tasksController = new Elysia({ prefix: "/api/v1/tasks" })
       categoryId: t.Optional(t.String()),
       priorityId: t.Optional(t.String()),
       patternSizeId: t.Optional(t.String()),
-      assignedToId: t.Optional(t.String()),
+      assignedToId: t.String(),
       dueDate: t.Optional(t.String()),
     })
   })

@@ -423,9 +423,9 @@ GET /api/v1/settings/pattern-sizes
 
 Trial scope:
 
-* [ ] Get categories
-* [ ] Get priorities
-* [ ] Get pattern sizes
+* [x] Get categories
+* [x] Get priorities
+* [x] Get pattern sizes
 
 Can postpone:
 
@@ -455,31 +455,31 @@ DELETE /api/v1/tasks/:id
 
 Tasks:
 
-* [ ] Create task module
-* [ ] Create task validation
-* [ ] Get task list with pagination
-* [ ] Get board grouped by status
-* [ ] Get task detail
-* [ ] Create task
-* [ ] Update task
-* [ ] Soft delete task
-* [ ] Filter by status
-* [ ] Filter by designer
-* [ ] Filter by category
-* [ ] Filter by priority
-* [ ] Filter by pattern size (10, 12, 14)
-* [ ] Filter by due date
-* [ ] Search by title/reference number
-* [ ] Sort by due date
-* [ ] Sort by updatedAt
+* [x] Create task module
+* [x] Create task validation
+* [x] Get task list with pagination
+* [x] Get board grouped by status
+* [x] Get task detail
+* [x] Create task
+* [x] Update task
+* [x] Soft delete task
+* [x] Filter by status
+* [x] Filter by designer
+* [x] Filter by category
+* [x] Filter by priority
+* [x] Filter by pattern size (10, 12, 14)
+* [x] Filter by due date
+* [x] Search by title/reference number
+* [x] Sort by due date
+* [x] Sort by updatedAt
 
 Access:
 
-* [ ] SUPER_ADMIN can view all tasks
-* [ ] SUPER_ADMIN can create/update/delete tasks
-* [ ] DESIGNER can view assigned tasks
-* [ ] DESIGNER can update their own assigned tasks
-* [ ] VIEWER read only
+* [x] SUPER_ADMIN can view all tasks
+* [x] SUPER_ADMIN can create/update/delete tasks
+* [x] DESIGNER can view assigned tasks
+* [x] DESIGNER can update their own assigned tasks
+* [x] VIEWER read only
 
 ---
 
@@ -493,13 +493,13 @@ PATCH /api/v1/tasks/:id/status
 
 Tasks:
 
-* [ ] Validate status
-* [ ] Update status
-* [ ] If status DONE, set completedAt
-* [ ] If status not DONE, clear completedAt if needed
-* [ ] Create activity log
-* [ ] Create notification if status changed
-* [ ] Return updated task
+* [x] Validate status
+* [x] Update status
+* [x] If status DONE, set completedAt
+* [x] If status not DONE, clear completedAt if needed
+* [x] Create activity log
+* [x] Create notification if status changed
+* [x] Return updated task
 
 Valid statuses:
 
@@ -549,13 +549,13 @@ Payload:
 
 Tasks:
 
-* [ ] Validate progress is integer 0-100
-* [ ] Validate progress range based on current status
-* [ ] Update task progress
-* [ ] Update task progressNote
-* [ ] Create progress log
-* [ ] Create activity log
-* [ ] Return updated task
+* [x] Validate progress is integer 0-100
+* [x] Validate progress range based on current status
+* [x] Update task progress
+* [x] Update task progressNote
+* [x] Create progress log
+* [x] Create activity log
+* [x] Return updated task
 
 Progress rules:
 
@@ -570,9 +570,9 @@ DONE         = 100
 
 Access:
 
-* [ ] SUPER_ADMIN can update any task progress
-* [ ] DESIGNER can update their own assigned task progress
-* [ ] VIEWER cannot update progress
+* [x] SUPER_ADMIN can update any task progress
+* [x] DESIGNER can update their own assigned task progress
+* [x] VIEWER cannot update progress
 
 ---
 
@@ -580,14 +580,14 @@ Access:
 
 Rules:
 
-* [ ] Every task must have one assigned designer
-* [ ] Every designer only updates their own tasks
-* [ ] Designers cannot modify tasks owned by others
-* [ ] Designers can update status
-* [ ] Designers can update progress
-* [ ] Designers can add comments
-* [ ] Designers can add revision notes
-* [ ] Ownership validation must happen in backend
+* [x] Every task must have one assigned designer
+* [x] Every designer only updates their own tasks
+* [x] Designers cannot modify tasks owned by others
+* [x] Designers can update status
+* [x] Designers can update progress
+* [x] Designers can add comments
+* [x] Designers can add revision notes
+* [x] Ownership validation must happen in backend
 
 Validation flow:
 

@@ -3,6 +3,8 @@ import { corsPlugin } from "./config/cors";
 import { globalErrorHandler } from "./shared/errors/errorHandler";
 import { authController } from "./modules/auth/auth.controller";
 import { usersController } from "./modules/users/users.controller";
+import { settingsController } from "./modules/settings/settings.controller";
+import { tasksController, tasksPatchController } from "./modules/tasks/tasks.controller";
 
 export const app = new Elysia()
   .use(corsPlugin)
@@ -14,4 +16,7 @@ export const app = new Elysia()
     };
   })
   .use(authController)
-  .use(usersController);
+  .use(usersController)
+  .use(settingsController)
+  .use(tasksController)
+  .use(tasksPatchController);

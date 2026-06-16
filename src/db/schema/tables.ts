@@ -1,4 +1,5 @@
 import { pgTable, text, varchar, timestamp, boolean, integer, uuid } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 import { roleEnum, taskStatusEnum, priorityLevelEnum, activityActionEnum, notificationTypeEnum } from "./enums";
 import { relations } from "drizzle-orm";
 
@@ -9,6 +10,7 @@ export const users = pgTable("users", {
   passwordHash: text("password_hash").notNull(),
   role: roleEnum("role").default("VIEWER").notNull(),
   isActive: boolean("is_active").default(true).notNull(),
+  avatarUrl: text("avatar_url").default(sql`'https://avatars.githubusercontent.com/u/' || floor(random() * 9000000 + 1000000)::text`),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

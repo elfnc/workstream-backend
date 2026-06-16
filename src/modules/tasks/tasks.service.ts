@@ -29,14 +29,54 @@ export const tasksService = {
     const [totalResult] = await db.select({ count: sql<number>`cast(count(${tasks.id}) as integer)` }).from(tasks).where(conditions);
     const total = totalResult.count;
 
-    const items = await db.select().from(tasks).where(conditions).limit(limit).offset(offset).orderBy(orderBy);
-    return { items, total };
+    const items = await db.query.tasks.findMany({
+      where: conditions,
+      limit: limit,
+      offset: offset,
+      orderBy: [orderBy],
+      with: {
+        category: true,
+        priority: true,
+        patternSize: true,
+        assignedTo: { columns: { id: true, name: true, avatarUrl: true } },
+        createdBy: { columns: { id: true, name: true } }
+      }
+    });
+    
+    // Map Drizzle relation objects back to simple string fields if necessary, 
+    // or keep them as objects for frontend.
+    // Frontend TaskCard expects `task.priority` to be a string (e.g. 'HIGH')
+    // and `task.category` to be a string.
+    const formattedItems = items.map(item => ({
+      ...item,
+      priority: item.priority?.level || null,
+      category: item.category?.name || null,
+    }));
+
+    return { items: formattedItems, total };
   },
 
   async getBoard(designerId?: string) {
     const conditions = designerId ? eq(tasks.assignedToId, designerId) : undefined;
-    const allTasks = await db.select().from(tasks).where(conditions).orderBy(desc(tasks.updatedAt));
-    const grouped = allTasks.reduce((acc: any, task) => {
+    const allTasks = await db.query.tasks.findMany({
+      where: conditions,
+      orderBy: [desc(tasks.updatedAt)],
+      with: {
+        category: true,
+        priority: true,
+        patternSize: true,
+        assignedTo: { columns: { id: true, name: true, avatarUrl: true } },
+        createdBy: { columns: { id: true, name: true } }
+      }
+    });
+    
+    const formattedTasks = allTasks.map(item => ({
+      ...item,
+      priority: item.priority?.level || null,
+      category: item.category?.name || null,
+    }));
+
+    const grouped = formattedTasks.reduce((acc: any, task) => {
       if (!acc[task.status]) acc[task.status] = [];
       acc[task.status].push(task);
       return acc;
@@ -51,11 +91,18 @@ export const tasksService = {
         category: true,
         priority: true,
         patternSize: true,
-        assignedTo: { columns: { id: true, name: true } },
+        assignedTo: { columns: { id: true, name: true, avatarUrl: true } },
         createdBy: { columns: { id: true, name: true } }
       }
     });
-    return task || null;
+    
+    if (!task) return null;
+    
+    return {
+      ...task,
+      priority: task.priority?.level || null,
+      category: task.category?.name || null,
+    };
   },
 
   async createTask(data: any, userId: string) {

@@ -45,14 +45,23 @@ export const tasksService = {
   },
 
   async getTaskById(id: string) {
-    const [task] = await db.select().from(tasks).where(eq(tasks.id, id));
+    const task = await db.query.tasks.findFirst({
+      where: eq(tasks.id, id),
+      with: {
+        category: true,
+        priority: true,
+        patternSize: true,
+        assignedTo: { columns: { id: true, name: true } },
+        createdBy: { columns: { id: true, name: true } }
+      }
+    });
     return task || null;
   },
 
   async createTask(data: any, userId: string) {
     return await db.transaction(async (tx) => {
       // Due date might need parsing if passed as string
-      const insertData = { ...data };
+      const insertData = { ...data, createdById: userId };
       if (insertData.dueDate) insertData.dueDate = new Date(insertData.dueDate);
       
       const [newTask] = await tx.insert(tasks).values(insertData).returning();

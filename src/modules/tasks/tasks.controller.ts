@@ -63,6 +63,8 @@ export const tasksController = new Elysia({ prefix: "/api/v1/tasks" })
     body: t.Object({
       title: t.String({ minLength: 1 }),
       referenceNumber: t.Optional(t.String()),
+      description: t.Optional(t.String()),
+      fileReference: t.Optional(t.String()),
       categoryId: t.String(),
       priorityId: t.String(),
       patternSizeId: t.String(),
@@ -105,6 +107,8 @@ export const tasksPatchController = new Elysia({ prefix: "/api/v1/tasks" })
     body: t.Object({
       title: t.Optional(t.String()),
       referenceNumber: t.Optional(t.String()),
+      description: t.Optional(t.String()),
+      fileReference: t.Optional(t.String()),
       categoryId: t.Optional(t.String()),
       priorityId: t.Optional(t.String()),
       patternSizeId: t.Optional(t.String()),

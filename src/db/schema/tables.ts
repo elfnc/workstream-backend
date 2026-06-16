@@ -36,10 +36,13 @@ export const tasks = pgTable("tasks", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: varchar("title", { length: 255 }).notNull(),
   referenceNumber: varchar("reference_number", { length: 255 }),
+  description: text("description"),
+  fileReference: varchar("file_reference", { length: 255 }),
   categoryId: uuid("category_id").references(() => categories.id),
   priorityId: uuid("priority_id").references(() => priorities.id),
   patternSizeId: uuid("pattern_size_id").references(() => patternSizes.id),
   assignedToId: uuid("assigned_to_id").references(() => users.id),
+  createdById: uuid("created_by_id").references(() => users.id),
   status: taskStatusEnum("status").default("QUEUE").notNull(),
   progress: integer("progress").default(0).notNull(),
   progressNote: text("progress_note"),
@@ -108,7 +111,8 @@ export const attachments = pgTable("attachments", {
 
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
-  tasks: many(tasks),
+  assignedTasks: many(tasks, { relationName: "assignedTasks" }),
+  createdTasks: many(tasks, { relationName: "createdTasks" }),
   comments: many(taskComments),
 }));
 
@@ -128,6 +132,16 @@ export const tasksRelations = relations(tasks, ({ one, many }) => ({
   patternSize: one(patternSizes, {
     fields: [tasks.patternSizeId],
     references: [patternSizes.id],
+  }),
+  assignedTo: one(users, {
+    fields: [tasks.assignedToId],
+    references: [users.id],
+    relationName: "assignedTasks",
+  }),
+  createdBy: one(users, {
+    fields: [tasks.createdById],
+    references: [users.id],
+    relationName: "createdTasks",
   }),
   comments: many(taskComments),
   revisions: many(revisionNotes),

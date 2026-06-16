@@ -819,38 +819,38 @@ Can postpone:
 
 Global validation:
 
-* [ ] Required fields
-* [ ] String length limit
-* [ ] Valid enum values
-* [ ] Valid date format
-* [ ] Progress range by status
-* [ ] File size limit
-* [ ] File type limit
+* [x] Required fields
+* [x] String length limit
+* [x] Valid enum values
+* [x] Valid date format
+* [x] Progress range by status
+* [x] File size limit
+* [x] File type limit
 
 Task validation:
 
-* [ ] title required
-* [ ] categoryId required
-* [ ] priorityId required
-* [ ] patternSize required (10, 12, 14)
-* [ ] assignedToId required
-* [ ] referenceNumber optional
-* [ ] dueDate optional
-* [ ] description optional
-* [ ] fileReference optional
+* [x] title required
+* [x] categoryId required
+* [x] priorityId required
+* [x] patternSize required (10, 12, 14)
+* [x] assignedToId required
+* [x] referenceNumber optional
+* [x] dueDate optional
+* [x] description optional
+* [x] fileReference optional
 
 ---
 
 # 26. Security Checklist
 
-* [ ] Password hashed
-* [ ] JWT secret from env
-* [ ] JWT in HttpOnly Cookie
-* [ ] Cookie secure in production
-* [ ] SameSite configured
-* [ ] CORS restricted to frontend origin
-* [ ] No passwordHash in response
-* [ ] RBAC enforced in backend
+* [x] Password hashed
+* [x] JWT secret from env
+* [x] JWT in HttpOnly Cookie
+* [x] Cookie secure in production
+* [x] SameSite configured
+* [x] CORS restricted to frontend origin
+* [x] No passwordHash in response
+* [x] RBAC enforced in backend
 * [ ] Ownership validation enforced
 * [ ] Upload file validation
 * [ ] Soft delete instead of hard delete for important records
@@ -859,7 +859,7 @@ Task validation:
 
 # 27. Trial Deployment
 
-Local trial options:
+Local trial options: (backlog)
 
 * [ ] Run on office local network
 * [ ] Backend accessible from LAN IP
@@ -868,11 +868,11 @@ Local trial options:
 
 Production-like option:
 
-* [ ] Nginx reverse proxy
-* [ ] Docker compose
-* [ ] PostgreSQL volume
-* [ ] Uploads volume
-* [ ] Environment configured
+* [x] Nginx reverse proxy
+* [x] Docker compose
+* [x] PostgreSQL volume
+* [x] Uploads volume
+* [x] Environment configured
 
 ---
 
@@ -880,11 +880,11 @@ Production-like option:
 
 Auth:
 
-* [ ] Super Admin login
-* [ ] Designer login
-* [ ] Viewer login
-* [ ] Logout
-* [ ] Invalid login rejected
+* [x] Super Admin login
+* [x] Designer login
+* [x] Viewer login
+* [x] Logout
+* [x] Invalid login rejected
 
 Task:
 

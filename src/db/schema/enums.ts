@@ -15,3 +15,15 @@ export const priorityLevelEnum = pgEnum("priority_level", [
   "HIGH",
   "URGENT",
 ]);
+export const activityActionEnum = pgEnum("activity_action", [
+  "CREATE",
+  "UPDATE",
+  "DELETE",
+  "STATUS_CHANGE",
+  "PROGRESS_UPDATE",
+]);
+export const notificationTypeEnum = pgEnum("notification_type", [
+  "TASK_ASSIGNED",
+  "STATUS_CHANGED",
+  "REVISION_ADDED",
+]);

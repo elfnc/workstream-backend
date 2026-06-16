@@ -126,13 +126,13 @@ MAX_FILE_SIZE=5242880
 
 # 5. Database Setup
 
-* [ ] Setup PostgreSQL database
-* [ ] Configure Drizzle connection
-* [ ] Create Drizzle schema
-* [ ] Generate migration
-* [ ] Run migration
-* [ ] Create seed script
-* [ ] Run seed script
+* [x] Setup PostgreSQL database
+* [x] Configure Drizzle connection
+* [x] Create Drizzle schema
+* [x] Generate migration
+* [x] Run migration
+* [x] Create seed script
+* [x] Run seed script
 
 ---
 
@@ -140,25 +140,25 @@ MAX_FILE_SIZE=5242880
 
 Create enums:
 
-* [ ] Role
-* [ ] TaskStatus
-* [ ] PriorityLevel
-* [ ] ActivityAction
-* [ ] NotificationType
+* [x] Role
+* [x] TaskStatus
+* [x] PriorityLevel
+* [x] ActivityAction
+* [x] NotificationType
 
 Create tables:
 
-* [ ] User
-* [ ] Category
-* [ ] Priority
-* [ ] PatternSize
-* [ ] Task
-* [ ] TaskComment
-* [ ] RevisionNote
-* [ ] ProgressLog
-* [ ] ActivityLog
-* [ ] Notification
-* [ ] Attachment
+* [x] User
+* [x] Category
+* [x] Priority
+* [x] PatternSize
+* [x] Task
+* [x] TaskComment
+* [x] RevisionNote
+* [x] ProgressLog
+* [x] ActivityLog
+* [x] Notification
+* [x] Attachment
 
 User fields:
 
@@ -175,9 +175,9 @@ updatedAt
 
 Important:
 
-* [ ] Username must be unique
-* [ ] Do not use email authentication
-* [ ] Email field is not required
+* [x] Username must be unique
+* [x] Do not use email authentication
+* [x] Email field is not required
 
 ---
 
@@ -185,10 +185,10 @@ Important:
 
 Create initial users:
 
-* [ ] Super Admin
-* [ ] Designer 1
-* [ ] Designer 2
-* [ ] Viewer
+* [x] Super Admin
+* [x] Designer 1
+* [x] Designer 2
+* [x] Viewer
 
 Example usernames:
 
@@ -209,38 +209,38 @@ VIEWER
 
 Default categories:
 
-* [ ] New Design
-* [ ] Tracing
-* [ ] Resize Pattern
-* [ ] Color Adjustment
-* [ ] Repeat Pattern
-* [ ] Revision
-* [ ] Other
+* [x] New Design
+* [x] Tracing
+* [x] Resize Pattern
+* [x] Color Adjustment
+* [x] Repeat Pattern
+* [x] Revision
+* [x] Other
 
 Default priorities:
 
-* [ ] Low
-* [ ] Medium
-* [ ] High
-* [ ] Urgent
+* [x] Low
+* [x] Medium
+* [x] High
+* [x] Urgent
 
 Default pattern sizes:
 
-* [ ] 10
-* [ ] 12
-* [ ] 14
+* [x] 10
+* [x] 12
+* [x] 14
 
 Default tasks:
 
-* [ ] Resize Pattern Ukuran 10
-* [ ] Resize Pattern Ukuran 12
-* [ ] Resize Pattern Ukuran 14
-* [ ] Tracing Artwork A-1245
-* [ ] Color Adjustment Motif Floral
-* [ ] Repeat Pattern Check
-* [ ] Revisi Warna Navy
-* [ ] Layout Motif Rotary
-* [ ] Cleanup File Design
+* [x] Resize Pattern Ukuran 10
+* [x] Resize Pattern Ukuran 12
+* [x] Resize Pattern Ukuran 14
+* [x] Tracing Artwork A-1245
+* [x] Color Adjustment Motif Floral
+* [x] Repeat Pattern Check
+* [x] Revisi Warna Navy
+* [x] Layout Motif Rotary
+* [x] Cleanup File Design
 
 ---
 

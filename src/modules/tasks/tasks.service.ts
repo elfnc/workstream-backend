@@ -92,7 +92,23 @@ export const tasksService = {
         priority: true,
         patternSize: true,
         assignedTo: { columns: { id: true, name: true, avatarUrl: true } },
-        createdBy: { columns: { id: true, name: true } }
+        createdBy: { columns: { id: true, name: true } },
+        comments: {
+          with: { user: { columns: { id: true, name: true, avatarUrl: true } } },
+          orderBy: (comments, { desc }) => [desc(comments.createdAt)]
+        },
+        revisions: {
+          with: { user: { columns: { id: true, name: true, avatarUrl: true } } },
+          orderBy: (revisions, { desc }) => [desc(revisions.createdAt)]
+        },
+        progressLogs: {
+          with: { user: { columns: { id: true, name: true, avatarUrl: true } } },
+          orderBy: (logs, { desc }) => [desc(logs.createdAt)]
+        },
+        attachments: {
+          with: { user: { columns: { id: true, name: true, avatarUrl: true } } },
+          orderBy: (attachments, { desc }) => [desc(attachments.createdAt)]
+        }
       }
     });
     

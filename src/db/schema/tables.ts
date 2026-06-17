@@ -150,3 +150,23 @@ export const tasksRelations = relations(tasks, ({ one, many }) => ({
   progressLogs: many(progressLogs),
   attachments: many(attachments),
 }));
+
+export const taskCommentsRelations = relations(taskComments, ({ one }) => ({
+  task: one(tasks, { fields: [taskComments.taskId], references: [tasks.id] }),
+  user: one(users, { fields: [taskComments.userId], references: [users.id] }),
+}));
+
+export const revisionNotesRelations = relations(revisionNotes, ({ one }) => ({
+  task: one(tasks, { fields: [revisionNotes.taskId], references: [tasks.id] }),
+  user: one(users, { fields: [revisionNotes.userId], references: [users.id] }),
+}));
+
+export const progressLogsRelations = relations(progressLogs, ({ one }) => ({
+  task: one(tasks, { fields: [progressLogs.taskId], references: [tasks.id] }),
+  user: one(users, { fields: [progressLogs.userId], references: [users.id] }),
+}));
+
+export const attachmentsRelations = relations(attachments, ({ one }) => ({
+  task: one(tasks, { fields: [attachments.taskId], references: [tasks.id] }),
+  user: one(users, { fields: [attachments.userId], references: [users.id] }),
+}));

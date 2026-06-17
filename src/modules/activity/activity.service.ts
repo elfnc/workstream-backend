@@ -24,7 +24,20 @@ export const activityService = {
     const [totalResult] = await db.select({ count: sql<number>`cast(count(${activityLogs.id}) as integer)` }).from(activityLogs).where(conditions);
     const total = totalResult.count;
 
-    const items = await db.select().from(activityLogs).where(conditions).limit(limit).offset(offset).orderBy(desc(activityLogs.createdAt));
+    const items = await db.query.activityLogs.findMany({
+      where: conditions,
+      limit,
+      offset,
+      orderBy: [desc(activityLogs.createdAt)],
+      with: {
+        user: {
+          columns: { id: true, name: true, avatarUrl: true, role: true }
+        },
+        task: {
+          columns: { id: true, title: true, referenceNumber: true }
+        }
+      }
+    });
     return { items, total };
   }
 };

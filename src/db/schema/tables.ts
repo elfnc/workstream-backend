@@ -170,3 +170,8 @@ export const attachmentsRelations = relations(attachments, ({ one }) => ({
   task: one(tasks, { fields: [attachments.taskId], references: [tasks.id] }),
   user: one(users, { fields: [attachments.userId], references: [users.id] }),
 }));
+
+export const activityLogsRelations = relations(activityLogs, ({ one }) => ({
+  user: one(users, { fields: [activityLogs.userId], references: [users.id] }),
+  task: one(tasks, { fields: [activityLogs.taskId], references: [tasks.id] }),
+}));

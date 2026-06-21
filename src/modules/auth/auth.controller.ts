@@ -9,7 +9,7 @@ export const authController = new Elysia({ prefix: "/api/v1/auth" })
   .post("/login", async ({ body, jwt, cookie: { workstream_token }, set }) => {
     const { username, password } = body;
     const user = await authService.validateLogin(username, password);
-    
+
     if (!user) {
       set.status = 401;
       return createErrorResponse("Invalid credential");
@@ -21,7 +21,7 @@ export const authController = new Elysia({ prefix: "/api/v1/auth" })
     }
 
     const token = await jwt.sign({ id: user.id });
-    
+
     workstream_token.set({
       value: token,
       httpOnly: true,
@@ -29,7 +29,6 @@ export const authController = new Elysia({ prefix: "/api/v1/auth" })
       sameSite: env.COOKIE_SAME_SITE,
       path: "/",
     });
-    console.log("Login successful, setting cookie:", workstream_token.value);
 
     const { passwordHash, ...safeUser } = user;
 
